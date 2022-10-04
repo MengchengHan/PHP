@@ -21,8 +21,31 @@
             
         $claves = array_keys($alumno);
         
+        echo "Claves" . "<br>";
         print_r($claves);
+
+        $valores = array_values($alumno);
+        echo "Valores". "<br>";
+        print_r($valores);
+
+        
+
+        $colores = array(
+            "Colores fuertes" => array("red", "green", "blue"),
+            "Colores suaves" => array("pink", "lightgreen", "lightblue")
+        );
     ?>
 
+<table border = '1' cellpadding=10 cellspacing=0 >
+    <?php
+
+    foreach($colores as $claves => $tipos){
+        echo "<tr><td>$claves</td>";
+        foreach($tipos as $color => $valor){
+            echo "<td BGCOLOR='$valor'>$valor:</td>";
+        }
+     }
+    ?>
+</table>
 </body>
 </html>
