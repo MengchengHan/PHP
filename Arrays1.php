@@ -28,8 +28,6 @@
         echo "Valores". "<br>";
         print_r($valores);
 
-        
-
         $colores = array(
             "Colores fuertes" => array("red", "green", "blue"),
             "Colores suaves" => array("pink", "lightgreen", "lightblue")
