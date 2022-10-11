@@ -18,6 +18,6 @@
     }
     
     function suma(){
-        return $_GET["num1"] + $_GET["num2"];
+        return $_REQUEST["num1"] + $_REQUEST["num2"];
     }
 ?>
