@@ -42,9 +42,10 @@
     class Empleado extends Persona {
         public $sueldo;
     
-        function __construct($nombre, $apellido, $edad, $sueldo){
+        function __construct($nombre, $apellido, $edad, $sueldo, $tiempo){
             parent::__construct($nombre, $apellido, $edad);
             $this->sueldo = $sueldo;
+            $this->tiempo = $tiempo;
         }
 
         function __toString(){
@@ -77,6 +78,10 @@
             }
         }
 
+        function añadirEmpleados($nif, $emp){
+            $empleados[$nif] = $emp;
+        }
+
         function __toString(){
             return "Somos " . $this->nombre . " tenemos " . count($this->empleados) ." empleados y " . count($this->clientes) . " clientes";
         }
@@ -90,17 +95,18 @@
     );
     
     $misEmpleados = array(
-        new Empleado("Juan", "Ruiz", 20, 1500), 
-        new Empleado("Alba", "Sánchez", 21, 1050), 
-        new Empleado("María", "Ruin", 15, 2500), 
-        new Empleado("Roland", "Vallès", 33, 1520)
+        "1234A" => new Empleado("Juan", "Ruiz", 20, 1500, 120), 
+        "1234B" => new Empleado("Alba", "Sánchez", 21, 1050, 650), 
+        "1234C" => new Empleado("María", "Ruin", 15, 2500, 455), 
+        "1234D" => new Empleado("Roland", "Vallès", 33, 1520, 342)
     );
      
     $empresa = new Empresa("Retrete SL", $misEmpleados, $misClientes);
-
-    echo $empresa . "<br>";
-    echo "Estos son mis clientes" . "<br>";
-    echo  $empresa->verClientes() . "<br>";
+    $emp = new Empleado("Freya", "Vallès", 31, 1400, 20);
+    $empresa->añadirEmpleados("1234G", $emp);
+    //echo $empresa . "<br>";
+    //echo "Estos son mis clientes" . "<br>";
+    //echo  $empresa->verClientes() . "<br>";
     echo  $empresa->verEmpleados();
     
     // echo $p1 . "<br>";
