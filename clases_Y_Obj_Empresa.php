@@ -41,15 +41,20 @@
 
     class Empleado extends Persona {
         public $sueldo;
-    
-        function __construct($nombre, $apellido, $edad, $sueldo, $tiempo){
+        public $antiguedad;
+
+        function __construct($nombre, $apellido, $edad, $sueldo, $antiguedad){
             parent::__construct($nombre, $apellido, $edad);
             $this->sueldo = $sueldo;
-            $this->tiempo = $tiempo;
+            $this->antiguedad = $antiguedad;
         }
 
         function __toString(){
-            return parent::__toString() . " y cobro " . $this->sueldo . " euros";
+            return parent::__toString() . " cobro " . $this->sueldo . " euros y tengo una antigüedad de " . $this->antiguedad . " días";
+        }
+
+        function __getAntiguedad(){
+            return $this->antiguedad;
         }
     }
 
@@ -72,6 +77,8 @@
         }
 
         function verEmpleados(){
+            
+            asort($this->empleados, SORT_STRING);
             while(current($this->empleados)){
                 echo current($this->empleados) . "<br>";
                 next($this->empleados);
@@ -79,13 +86,23 @@
         }
 
         function añadirEmpleados($nif, $emp){
-            $empleados[$nif] = $emp;
+            $this->empleados[$nif] = $emp; 
+        }
+
+        function masAntiguo(){
+            $antiguedades = array();
+            foreach($this->empleados as $k => $v){
+                $antiguedades[$k] = $v->__getAntiguedad();
+            }
+            asort($antiguedades);
+            end($antiguedades);
+            echo $this->empleados[key($antiguedades)];
         }
 
         function __toString(){
             return "Somos " . $this->nombre . " tenemos " . count($this->empleados) ." empleados y " . count($this->clientes) . " clientes";
         }
-    }
+}
     // $p1 = new Persona("Mengcheng", "Han", 20);
     
     $misClientes = array(
@@ -95,19 +112,21 @@
     );
     
     $misEmpleados = array(
-        "1234A" => new Empleado("Juan", "Ruiz", 20, 1500, 120), 
+        "1234A" => new Empleado("Kap", "Uyo o", 20, 1800, 120), 
         "1234B" => new Empleado("Alba", "Sánchez", 21, 1050, 650), 
-        "1234C" => new Empleado("María", "Ruin", 15, 2500, 455), 
+        "1234C" => new Empleado("Filo", "DaPuta", 15, 2500, 455), 
         "1234D" => new Empleado("Roland", "Vallès", 33, 1520, 342)
     );
      
     $empresa = new Empresa("Retrete SL", $misEmpleados, $misClientes);
     $emp = new Empleado("Freya", "Vallès", 31, 1400, 20);
     $empresa->añadirEmpleados("1234G", $emp);
-    //echo $empresa . "<br>";
-    //echo "Estos son mis clientes" . "<br>";
-    //echo  $empresa->verClientes() . "<br>";
-    echo  $empresa->verEmpleados();
+    echo $empresa . "<br>";
+    echo "Estos son mis clientes" . "<br>";
+    echo  $empresa->verClientes() . "<br>";
+    echo  $empresa->verEmpleados() . "<br>" ;
+    echo $empresa->masAntiguo();
+
     
     // echo $p1 . "<br>";
     // echo $c1 . "<br>";

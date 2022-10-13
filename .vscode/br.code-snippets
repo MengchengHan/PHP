@@ -1,0 +1,7 @@
+{
+	"<br> - Salto de línea en HTML":{
+		"prefix": ["br"],
+		"body": ["\"<br>\""],
+		"description": "Break rule"
+	}
+}
