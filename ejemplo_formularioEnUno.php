@@ -1,12 +1,12 @@
 <?php
-/* si va bien redirige a principal.php si va mal, mensaje de error */
-if ($_SERVER["REQUEST_METHOD"] == "POST") {  	
-	if($_POST['usuario'] === "usuario" and $_POST["clave"] === "1234"){		
-		header("Location: welcome.html");
-	}else{
-		$err = true;
-	}	
-}
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {  	
+		$sexo = $_REQUEST["sexo"];
+		if(!is_null($sexo)){		
+			print($sexo);
+		}else{
+			$err = true;
+		}	
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,16 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<meta charset = "UTF-8">
 	</head>
 	<body>			
-		<?php if(isset($err)){
-			echo "<p> Revise usuario y contraseña</p>";
-		}?>
 		<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST">
-			<label for = "usuario">Usuario</label> 
-			<input value = usuario type="text" id = "usuario" name = "usuario" type = "text">	
-			
-			<label for = "clave">Clave</label> 
-			<input id = "clave" name = "clave" type = "password">			
-			
+				<input type="radio" name="sexo">
+				<span>Hombre</span>
+				<input type="radio" name="sexo">
+				<span>Mujer</span>
 			<input type = "submit">
 		</form>
 	</body>

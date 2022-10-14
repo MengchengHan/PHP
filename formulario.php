@@ -9,39 +9,47 @@
     $age = $_REQUEST["age"];
     $url = $_REQUEST["url"];
     $schedule = $_REQUEST["schedule"]; 
-    $status;
-    $str_err;
+    $status = false;
+    $str_err = "";
 
     if($estaciones == null){
         $status = true;
-        $str_err = "Falta el campo Estación del año fav";
-    } elseif ($search == null){
+        $str_err = "Falta el campo Estación del año fav" . "<br>";
+    } 
+    if ($search == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo buscar";
-    } elseif ($name == null){
+        $str_err = $str_err . "Falta el campo buscar" . "<br>";
+    } 
+    if ($name == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo nombre";
-    } elseif ($last_name == null){
+        $str_err = $str_err . "Falta el campo nombre" . "<br>";
+    } 
+    if ($last_name == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo apellido";
-    } elseif ($email == null){
+        $str_err = $str_err . "Falta el campo apellido" . "<br>";
+    } 
+    if ($email == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo email";
-    } elseif ($fecha_nac == null){
+        $str_err = $str_err . "Falta el campo email" . "<br>";
+    } 
+    if ($fecha_nac == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo fecha_nac";
-    } elseif ($age == null){
+        $str_err = $str_err . "Falta el campo fecha_nac" . "<br>";
+    } 
+    if ($age == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo edad";
-    } elseif ($url == null){
+        $str_err = $str_err . "Falta el campo edad" . "<br>";
+    } 
+    if ($url == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo web";
-    } elseif ($schedule == null){
+        $str_err = $str_err . "Falta el campo web" . "<br>";
+    } 
+    if ($schedule == null){
         $status = true;
-        $str_err = $str_err . "Falta el campo horario";
+        $str_err = $str_err . "Falta el campo horario" . "<br>";
     }
 
-    if(isset($status)){
+    if($status){
         echo $str_err;
     } else {
         header("Location:welcome.html");
