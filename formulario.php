@@ -1,30 +1,35 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $str = array();
+        $array_errores = array();
         $err = false;
+        
 
         foreach ($_POST as $k => $v) {
             if (empty($v)) {
-                $str[] = $k;
+                $array_errores[] = $k;
                 $err = true;
             } elseif ($k == 'sexo' || $k == 'estaciones'){
                 if ($k == 'sexo' && empty($v)){
-                    $str[] = "sexo";
+                    $array_errores[] = "sexo";
                 } elseif ($k == 'estaciones' && empty($v)){
-                    $str[] = "estación";
+                    $array_errores[] = "estación";
                 }
             }
         }
 
         if ($err) {
             echo "Falta el campo de ";
-            foreach ($str as $item) {
-                echo $item . " ";
+            foreach ($array_errores as $v) {
+                echo $v . " ";
             }
             echo "<br> <br>";
         } else {
             header("Location:welcome.html");
         }
+
+        print_r($_POST["estaciones"]); 
+        
+        
     }
     ?>
 <!DOCTYPE html>
@@ -38,7 +43,7 @@
 </head>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST" align="center">
         <label for="estaciones">Estación del año fav</label>
         <select name="estaciones"]">
             <option value="" disabled selected></option>
@@ -47,6 +52,10 @@
             <option <?php if (isset($_POST["estaciones"]) && $_POST["estaciones"] == "Otoño") {echo 'selected';}?>>Otoño</option>
             <option <?php if (isset($_POST["estaciones"]) && $_POST["estaciones"] == "Invierno") {echo 'selected';}?>>Invierno</option>
         </select>
+        <br>
+
+        <label for="color">Color:</label>
+        <input type="color" name="color" value="<?php if (!empty($_POST["color"])) {echo $_POST["color"];}?>">
         <br>
 
         <label for="nombre">Nombre:</label>
@@ -65,6 +74,8 @@
         <label for="sexo" id="hombre">Hombre</label>
         <input type="radio" name="sexo" value="hembra" <?php if (!empty($_POST["sexo"]) && $_POST["sexo"] == "hembra") {echo 'checked';}?>>
         <label for="sexo" id="mujer">Mujer</label>
+        <input type="radio" name="sexo" value="indef" <?php if (!empty($_POST["sexo"]) && $_POST["sexo"] == "indef") {echo 'checked';}?>>
+        <label for="sexo" id="indef">Indefinido</label>
         <br>
 
         <label for="fecha_nacimiento">Fecha de nacimiento:</label>
@@ -76,6 +87,7 @@
         <br>
 
         <input type="submit">
+        
 
     </form>
 </body>
