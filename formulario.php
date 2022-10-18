@@ -1,10 +1,18 @@
 <?php
+    include('funcionesValidación.php');
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $array_errores = array();
         $err = false;
-        
+        $datos = $_POST;
 
-        foreach ($_POST as $k => $v) {
+        echo vcolor($datos['color']);
+        echo vnombre($datos['nombre']);
+        echo vapellido($datos['apellido']);
+        echo vemail($datos['email']);
+        echo vfecha($datos['fecha_nacimiento']);
+
+
+        foreach ($datos as $k => $v) {
             if (empty($v)) {
                 $array_errores[] = $k;
                 $err = true;
@@ -27,7 +35,7 @@
             header("Location:welcome.html");
         }
 
-        print_r($_POST["estaciones"]); 
+        isset($datos["estaciones"]) ? print_r($datos["estaciones"]) : ""; 
         
         
     }
@@ -43,14 +51,14 @@
 </head>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST" align="center">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST" align="center" enctype="multipart/form-data">
         <label for="estaciones">Estación del año fav</label>
-        <select name="estaciones"]">
+        <select multiple size="5" name="estaciones[]">
             <option value="" disabled selected></option>
-            <option <?php if (isset($_POST["estaciones"]) && $_POST["estaciones"] == "Primavera") {echo 'selected';}?>>Primavera</option>
-            <option <?php if (isset($_POST["estaciones"]) && $_POST["estaciones"] == "Verano") {echo 'selected';}?>>Verano</option>
-            <option <?php if (isset($_POST["estaciones"]) && $_POST["estaciones"] == "Otoño") {echo 'selected';}?>>Otoño</option>
-            <option <?php if (isset($_POST["estaciones"]) && $_POST["estaciones"] == "Invierno") {echo 'selected';}?>>Invierno</option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Primavera", $_POST["estaciones"])) {echo 'selected';}?>>Primavera</option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Verano", $_POST["estaciones"])) {echo 'selected';}?>>Verano</option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Otoño", $_POST["estaciones"])) {echo 'selected';}?>>Otoño</option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Invierno", $_POST["estaciones"])) {echo 'selected';}?>>Invierno</option>
         </select>
         <br>
 
