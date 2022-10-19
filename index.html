@@ -8,8 +8,9 @@
 </head>
 <body>
     <form action="index.php" enctype="multipart/form-data" method="post">
-        <!-- <input type="hidden" name="MAX_FILE_SIZE" value="102400000000"> -->
-        <input type="File" name="archivo">
+        <input type="hidden" name="MAX_FILE_SIZE" value="1024"><br>
+        <input type="File" name="archivo" value="<?php if (!empty($_FILES['archivo'][])) {}?>"><br>
+        <input type="text" name="destino" placeholder="Introduce carpeta destino" value="<?php if (!empty($_POST['destino'])) {echo $_POST['destino'];}?>"><br>
         <input type="submit">
     </form>
 </body>
