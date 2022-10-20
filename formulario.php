@@ -94,6 +94,13 @@
         <input type="number" name="edad" min="0" max="120" value="<?php if (!empty($_POST["edad"])) {echo $_POST["edad"];}?>">
         <br>
 
+        <label for="uno">1</label>
+        <input type="checkbox" name="uno" <?php if (!empty($_POST["uno"])) {echo 'checked';}?>>
+        <label for="dos">2</label>
+        <input type="checkbox" name="dos" <?php if (!empty($_POST["uno"])) {echo 'checked';}?>>
+        <label for="tres">3</label>
+        <input type="checkbox" name="tres" <?php if (!empty($_POST["uno"])) {echo 'checked';}?>>
+        <br>
         <input type="submit">
         
 
