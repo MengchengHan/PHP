@@ -10,19 +10,32 @@
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" method="post">
         <!-- <input type="hidden" name="MAX_FILE_SIZE" value="1024"><br> -->
         <input type="File" name="archivo"><br>
-        <input required type="text" name="destino" placeholder="Introduce carpeta destino" value="<?php if(!empty($_POST['destino'])){echo $_POST['destino'];}?>"><br>
-        <textarea required name="descrip"><?php if (!empty($_POST['descrip'])) {echo $_POST['descrip'];}?></textarea><br>
+        <input type="text" name="destino" id="texto" placeholder="Introduce carpeta destino" value="<?php if(!empty($_POST['destino']) && $_FILES['archivo']['error'] != 0){echo $_POST['destino'];}?>"><br>
+        <textarea name="descrip"><?php if (!empty($_POST['descrip']) && $_FILES['archivo']['error'] != 0) {echo $_POST['descrip'];}?></textarea><br>
         <input type="submit">
     </form>
 </body>
 </html>
+<script>
+    document.getElementById("texto").addEventListener("keyup", myFunction);
 
+    function myFunction() {
+		var campo = document.getElementById("texto");
+    if (campo.value == '') {
+    	campo.style.backgroundColor = "red";
+    }
+    else {
+      campo.style.backgroundColor = "green";
+    }
+}
+</script>
 <?php 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         switch ($_FILES['archivo']['error']) {
             case 0:
                 if (is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    $nombreDirectorio = $_POST['destino'];
+                    mkdir($_POST['destino']);
+                    $nombreDirectorio = $_POST['destino'].'/';
                     $nombreFichero = $_FILES['archivo']['name'];
                     $nombreCompleto = $nombreDirectorio . $nombreFichero;
                     if (is_file($nombreCompleto)) {
@@ -62,5 +75,6 @@
                 break;
         }
     }
+
 ?>
 
