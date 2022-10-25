@@ -1,0 +1,110 @@
+<?php
+    include('funcionesValidación.php');
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $array_errores = array();
+        $err = false;
+        $datos = $_POST;
+
+        echo vcolor($datos['color']);
+        echo vnombre($datos['nombre']);
+        echo vapellido($datos['apellido']);
+        echo vemail($datos['email']);
+        echo vfecha($datos['fecha_nacimiento']);
+
+
+        foreach ($datos as $k => $v) {
+            if (empty($v)) {
+                $array_errores[] = $k;
+                $err = true;
+            } elseif ($k == 'sexo' || $k == 'estaciones'){
+                if ($k == 'sexo' && empty($v)){
+                    $array_errores[] = "sexo";
+                } elseif ($k == 'estaciones' && empty($v)){
+                    $array_errores[] = "estación";
+                }
+            }
+        }
+
+        if ($err) {
+            echo "Falta el campo de ";
+            foreach ($array_errores as $v) {
+                echo $v . " ";
+            }
+            echo "<br> <br>";
+        } else {
+            header("Location:welcome.html");
+        }
+
+        isset($datos["estaciones"]) ? print_r($datos["estaciones"]) : ""; 
+        
+        
+    }
+    ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+
+<body>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST" align="center" enctype="multipart/form-data">
+        <label for="estaciones">Estación del año fav</label>
+        <select multiple size="5" name="estaciones[]">
+            <option value="" disabled selected></option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Primavera", $_POST["estaciones"])) {echo 'selected';}?>>Primavera</option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Verano", $_POST["estaciones"])) {echo 'selected';}?>>Verano</option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Otoño", $_POST["estaciones"])) {echo 'selected';}?>>Otoño</option>
+            <option <?php if (isset($_POST["estaciones"]) && in_array("Invierno", $_POST["estaciones"])) {echo 'selected';}?>>Invierno</option>
+        </select>
+        <br>
+
+        <label for="color">Color:</label>
+        <input type="color" name="color" value="<?php if (!empty($_POST["color"])) {echo $_POST["color"];}?>">
+        <br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" value="<?php if (!empty($_POST["nombre"])) {echo $_POST["nombre"];}?>">
+        <br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" value="<?php if (!empty($_POST["apellido"])) {echo $_POST["apellido"];}?>">
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" value="<?php if (!empty($_POST["email"])) {echo $_POST["email"];}?>">
+        <br>
+
+        <input type="radio" name="sexo" value="macho" <?php if (!empty($_POST["sexo"]) && $_POST["sexo"] == "macho") {echo 'checked';}?>>
+        <label for="sexo" id="hombre">Hombre</label>
+        <input type="radio" name="sexo" value="hembra" <?php if (!empty($_POST["sexo"]) && $_POST["sexo"] == "hembra") {echo 'checked';}?>>
+        <label for="sexo" id="mujer">Mujer</label>
+        <input type="radio" name="sexo" value="indef" <?php if (!empty($_POST["sexo"]) && $_POST["sexo"] == "indef") {echo 'checked';}?>>
+        <label for="sexo" id="indef">Indefinido</label>
+        <br>
+
+        <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+        <input type="date" name="fecha_nacimiento" value="<?php if (!empty($_POST["fecha_nacimiento"])) {echo $_POST["fecha_nacimiento"];}?>">
+        <br>
+
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" min="0" max="120" value="<?php if (!empty($_POST["edad"])) {echo $_POST["edad"];}?>">
+        <br>
+
+        <label for="uno">1</label>
+        <input type="checkbox" name="uno" <?php if (!empty($_POST["uno"])) {echo 'checked';}?>>
+        <label for="dos">2</label>
+        <input type="checkbox" name="dos" <?php if (!empty($_POST["uno"])) {echo 'checked';}?>>
+        <label for="tres">3</label>
+        <input type="checkbox" name="tres" <?php if (!empty($_POST["uno"])) {echo 'checked';}?>>
+        <br>
+        <input type="submit">
+        
+
+    </form>
+</body>
+
+</html>
