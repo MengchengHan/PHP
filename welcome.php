@@ -1,3 +1,8 @@
+<?php 
+// session_start();
+// $nombre= $_SESSION['nom'];
+$nombre= $_COOKIE['usuario'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,6 @@
     <title>Bienvenido máquina</title>
 </head>
 <body>
-    <p align="center">Bienvenido Señor</p>
+    <p align="center">Bienvenido <?php echo $nombre?></p>
 </body>
-</html>
+</html> 

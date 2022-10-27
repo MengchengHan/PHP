@@ -20,4 +20,4 @@
     header("refresh: 1");
 
     exit;
-?>      
+?>

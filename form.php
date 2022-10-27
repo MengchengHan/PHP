@@ -1,5 +1,9 @@
+<?php
+if (!isset($_COOKIE['usuario'])) {
+    ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,12 +13,17 @@
 </head>
 
 <body>
-    <form action="contador_visitas.php" method='post'>
-        <label for="areatexto">Cuál es tu nombre?</label>
-        <textarea name="areatexto" id="" cols="30" rows="10"></textarea>
-
+    <form action="setCookie.php" method='post'>
+        <label for="nombre">Cuál es tu nombre?</label>
+        <input name="nombre"></input>
         <input type="submit">
     </form>
 </body>
 
 </html>
+
+<?php
+} else {
+    header('Location: welcome.php');
+}
+?>
