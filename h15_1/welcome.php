@@ -1,6 +1,4 @@
 <?php 
-// session_start();
-// $nombre= $_SESSION['nom'];
 $nombre= $_COOKIE['usuario'];
 ?>
 <!DOCTYPE html>
