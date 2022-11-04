@@ -1,13 +1,16 @@
 <?php
-    $datosLog = array("usuario"=>"1234", "han" => "4567");
-
-foreach ($datosLog as $key => $value) {
-    if(array_key_exists($_REQUEST["user"], $datosLog)){
-        if($_REQUEST["password"] === $datosLog[$_REQUEST["user"]]){
-            header("Location:welcome.html");
-        }
-    } else{
-        header("Location:user_pass_incorrect.html");
-    }
-}
+    $mysqli = new mysqli('localhost', 'root', '', 'credenciales');
+    $user = 'Han';
+    $query = 'SELECT pass FROM CREDENCIALES WHERE user LIKE ' . $uservf;                
+    //$pass = $_POST["pass"];
+    echo $query;
+    // if(mysqli_connect_errno()){
+    //     echo 'Ha fallado la conexión a la base de datos.';
+    // } else {
+    //     $resultado = $mysqli->query($query);
+    //     print_r(mysqli_fetch_row($resultado));
+    //     //header("Location:welcome.html");
+    //     //} else{
+    //         header("Location:user_pass_incorrect.html");
+    // }
 ?>
