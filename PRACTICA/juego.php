@@ -11,12 +11,7 @@
 </head>
 <body>
     <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-        <button>A</button>
-        <button>R</button>
-        <button>S</button>
-        <button>T</button>
-        <button>C</button>
-        <button>E</button>
+        
     </form>
 </body>
 </html>
