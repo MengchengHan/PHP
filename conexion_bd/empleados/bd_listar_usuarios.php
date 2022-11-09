@@ -1,5 +1,5 @@
 <?php
-    $db = new PDO('mysql:host=localhost; dbname=empresa','root', '');
+    //$db = new PDO('mysql:host=localhost; dbname=empresa','root', '');
     // $preparada = $db->prepare("SELECT nombre FROM usuarios where rol = ?");
     // $preparada->execute(array(0));
     // foreach($preparada as $usu){
@@ -26,8 +26,21 @@
     // $rol = 2;
     // $sentencia->execute();
 
-    $sentencia = $db->prepare("SELECT * FROM usuarios WHERE nombre = ?");
-    if($sentencia->execute(array($_GET['nom']))){
-        echo "<pre>" . print_r($sentencia->fetch(), true) . "</pre>";
-    }
+    // $sentencia = $db->prepare("SELECT * FROM usuarios WHERE nombre = ?");
+    // if($sentencia->execute(array($_GET['nom']))){
+    //     echo "<pre>" . print_r($sentencia->fetch(), true) . "</pre>";
+    // }
+
+    $db = new mysqli ('localhost', 'root', '', 'empresa');
+    $sentencia = $db->prepare("DELETE FROM usuarios WHERE nombre like ?");
+    $sentencia->bind_param('s', $nombre,);
+
+    $nombre = 'Teta';
+    $clave = '1234';
+    $rol= 2;
+
+    $sentencia->execute();
+
+    $sentencia->close();
+
 ?>
