@@ -1,0 +1,85 @@
+:root {
+    --main_bg_color: rgba(150, 255, 255, 0.6);
+    --box_shadow : rgba(0,0,0,0.2);
+    --button_gradient: linear-gradient(0deg, rgba(155, 155, 155, 0.55) 0%, rgb(230, 234, 234) 50%);
+}
+
+body {
+    background-color: var(--main_bg_color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#container {
+    width: fit-content;
+    height: 1000px;
+    margin: 0px auto;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+input {
+    border: 0px;
+    border-radius: 8px;
+}
+
+input[type=text], input[type=password] {
+    font-size: 30px;
+    height: 70px;
+    display: flex;
+    box-shadow: 5px 5px 10px var(--box_shadow);
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#caja_checkbox{
+    margin-top: 10px;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+}
+
+input[type=checkbox]{
+    width: 16px;
+    height: 16px;
+}
+
+input[type=submit]{
+    margin-top: 10px;
+    font-size: 18px;
+    width:100% ;
+    height: 40px;
+    background: var(--button_gradient);
+}
+
+#is:hover {
+    cursor: pointer;
+    background-color: #e1e1e1;
+}
+
+#is:active {
+    cursor: pointer;
+    background-color: rgb(170, 170, 170);
+}
+
+#crear_cuenta {
+    margin-top: 15px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    width: 99%;
+    text-align: center;
+}
+
+#crear_cuenta span {
+    padding: 1%;
+    line-height: 40px;
+}
