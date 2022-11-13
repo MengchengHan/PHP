@@ -18,6 +18,11 @@ body {
     align-items: center;
 }
 
+#span_inicio {
+    display:flex;
+    justify-content: center;
+}
+
 form {
     width: fit-content;
     display: flex;

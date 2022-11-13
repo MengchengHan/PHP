@@ -1,3 +1,21 @@
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        try{
+            $usuario = $_POST['user'];
+            $contraseña = $_POST['pass'];
+            $mydb = new PDO('mysql:host=localhost; dbname=juego','root', '');
+            $resultado = $mydb->query("SELECT contraseña FROM jugadores WHERE usuario LIKE '$usuario'");
+            if ($contraseña != $resultado->fetchColumn()) {
+                echo "<br>" . 'Has introducido mal tus credenciales, inténtalo de nuevo.';
+            } else {
+                header('Location:juego.php');
+            }
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +29,7 @@
 
 <body>
     <div id="container">
-            <form action="login.php" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                 <input type="text" name="user" placeholder="Usuario" id="user">
                 <input type="password" name="pass" placeholder="Constraseña" id="pass">
                 <div id="caja_checkbox">

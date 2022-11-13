@@ -1,3 +1,20 @@
+<?php 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        try{
+            $mydb = new PDO('mysql:host=localhost; dbname=juego','root', '');
+            $usuario = $_POST['usuario'];
+            $contraseña = $_POST['contraseña'];
+            $nombre = $_POST['nombre'];
+            $apellido = $_POST['apellido'];
+            $sentencia = $mydb->query("INSERT INTO jugadores VALUES ('$usuario', '$contraseña', '$nombre', '$apellido')");
+
+            header('Location:login.php');
+        }catch(PDOexception $e){
+            echo $e->getMessage();
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +26,11 @@
 </head>
 <body>
     <div id="container">
-        <form action="" method="post">
-            <input type="text" placeholder="Nombre">
-            <input type="text" placeholder="Apellido">
-            <input type="text" placeholder="Usuario" id="user">
-            <input type="password" placeholder="Contraseña" id="pass">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <input type="text" name="apellido" placeholder="Apellido">
+            <input type="text" name="usuario"   placeholder="Usuario" id="user">
+            <input type="password" name="contraseña" placeholder="Contraseña" id="pass">
             <div id="caja_checkbox">
                 <input type="checkbox" name="show_pass" id="show_pass">
                 <label for="show_pass" id="label_show_pass">Mostrar contraseña</label>
