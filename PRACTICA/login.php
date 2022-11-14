@@ -3,9 +3,9 @@
         try{
             $usuario = $_POST['user'];
             $contraseña = $_POST['pass'];
-            $mydb = new PDO('mysql:host=localhost; dbname=juego','root', '');
-            $resultado = $mydb->query("SELECT contraseña FROM jugadores WHERE usuario LIKE '$usuario'");
-            if ($contraseña != $resultado->fetchColumn()) {
+            $mysqli = new mysqli("localhost", "root", "", "juego");
+            $resultado = $mysqli->query("SELECT contraseña FROM jugadores WHERE usuario LIKE '$usuario'");
+            if ($contraseña != $resultado->fetch_column()) {
                 echo "<br>" . 'Has introducido mal tus credenciales, inténtalo de nuevo.';
             } else {
                 header('Location:juego.php');
