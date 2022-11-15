@@ -12,6 +12,8 @@
             }
         } catch (PDOException $e) {
             $e->getMessage();
+        } finally {
+            $mysqli->close();
         }
     }
 ?>
