@@ -10,12 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$err = true;
 		$usuario = $_POST['usuario'];
 	}else{
-		session_start();
-		// $usu tiene campos correo y codRes, correo 
-		$_SESSION['usuario'] = $usu;
-		$_SESSION['carrito'] = [];
-		header("Location: categorias.php");
-		return;
+		if($_POST['usuario'] == 'admin' && $_POST['clave']) {
+			header('Location:admin.php'); 
+		} else {	
+			session_start();
+			// $usu tiene campos correo y codRes, correo 
+			$_SESSION['usuario'] = $usu;
+			$_SESSION['carrito'] = [];
+			header("Location: categorias.php");
+			return;
+		}
 	}	
 }
 ?>

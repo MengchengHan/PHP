@@ -7,9 +7,11 @@ $unidades = $_POST['unidades'];
 /*si existe el código restamos las unidades, con mínimo de 0*/
 if(isset($_SESSION['carrito'][$cod])){		
 	$_SESSION['carrito'][$cod] -= $unidades;
+	
 	if($_SESSION['carrito'][$cod] <= 0){
-		unset($_SESSION['carrito'][$cod]);
+		unset($_SESSION['carrito']);
 	}
+	
 	
 }
 header("Location: carrito.php");
