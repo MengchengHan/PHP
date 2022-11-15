@@ -4,14 +4,14 @@
             $usuario = $_POST['user'];
             $contraseña = $_POST['pass'];
             $mysqli = new mysqli("localhost", "root", "", "juego");
-            $resultado = $mysqli->query("SELECT contraseña FROM jugadores WHERE usuario LIKE '$usuario'");
-            if ($contraseña != $resultado->fetch_column()) {
-                echo "<br>" . 'Has introducido mal tus credenciales, inténtalo de nuevo.';
-            } else {
+            $hash = $mysqli->query("SELECT pass_hashed FROM jugadores WHERE usuario LIKE '$usuario'");
+            if (password_verify($contraseña, $hash->fetch_column())) {
                 header('Location:juego.php');
+            } else {
+                echo "<br>" . 'Has introducido mal tus credenciales, inténtalo de nuevo.';
             }
         } catch (PDOException $e) {
-            $e->getMessage();
+            echo $e->getMessage();
         } finally {
             $mysqli->close();
         }

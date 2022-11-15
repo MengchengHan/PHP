@@ -1,12 +1,22 @@
 <?php
+    header("Content-Type: text/html;charset=utf-8");
     $mysqli = new mysqli("localhost", "root", "", "juego");
-    $resultado = $mysqli->query("SELECT palabra FROM palabras ORDER BY RAND() LIMIT 10");
-    $array = array();
-    foreach($resultado->fetch_all() as $k => $v) {
-        $array = $v;
+    $resultado = mysqli_query($mysqli, "SELECT palabra FROM palabras ORDER BY RAND() LIMIT 100");
+    $palabras = array_map('current', mysqli_fetch_all($resultado));
+    echo "<pre>" . print_r($palabras, true) . "</pre>";
+
+    //almacenar todas las letras de todas las palabras
+    //elimianr las que sean iguales sort()
+
+    $letras = [];
+    foreach($palabras as $k => $v){
+        $array_letras = preg_split('//', $v, -1, PREG_SPLIT_NO_EMPTY);
+        $letras = array_merge($array_letras, $letras);
     }
-        
-    print_r($array);
+    
+    $letras = array_unique($letras);
+    echo "<pre>" . print_r($letras, true) . "</pre>";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

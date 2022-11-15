@@ -3,7 +3,7 @@
         try{
             $mydb = new PDO('mysql:host=localhost; dbname=juego','root', '');
             $usuario = $_POST['usuario'];
-            $contraseña = $_POST['contraseña'];
+            $contraseña = password_hash($_POST['contraseña'], PASSWORD_ARGON2ID);
             $nombre = $_POST['nombre'];
             $apellido = $_POST['apellido'];
             $sentencia = $mydb->query("INSERT INTO jugadores VALUES ('$usuario', '$contraseña', '$nombre', '$apellido')");
