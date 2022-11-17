@@ -1,12 +1,8 @@
 <?php
-    header("Content-Type: text/html;charset=utf-8");
     $mysqli = new mysqli("localhost", "root", "", "juego");
     $resultado = mysqli_query($mysqli, "SELECT palabra FROM palabras ORDER BY RAND() LIMIT 100");
     $palabras = array_map('current', mysqli_fetch_all($resultado));
     echo "<pre>" . print_r($palabras, true) . "</pre>";
-
-    //almacenar todas las letras de todas las palabras
-    //elimianr las que sean iguales sort()
 
     $letras = [];
     foreach($palabras as $k => $v){
@@ -28,7 +24,12 @@
 </head>
 <body>
     <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-    
+        <?php
+            echo "<input type=button value=" . shuffle($letras) . ">";
+            foreach($letras as $k => $v) {
+                echo "<input type=button value=$v>";
+            }
+        ?>
     </form>
 </body>
 </html>
