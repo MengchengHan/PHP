@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2022 a las 17:56:40
+-- Tiempo de generación: 20-11-2022 a las 18:01:49
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `juego`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jugadores`
+--
+
+CREATE TABLE `jugadores` (
+  `usuario` varchar(10) COLLATE ucs2_spanish_ci NOT NULL,
+  `contraseña` varchar(100) COLLATE ucs2_spanish_ci NOT NULL,
+  `nombre` varchar(20) COLLATE ucs2_spanish_ci NOT NULL,
+  `apellido` varchar(15) COLLATE ucs2_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=ucs2 COLLATE=ucs2_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `jugadores`
+--
+
+INSERT INTO `jugadores` (`usuario`, `contraseña`, `nombre`, `apellido`) VALUES
+('Han', '1234', '', '');
 
 -- --------------------------------------------------------
 
@@ -6277,6 +6297,12 @@ INSERT INTO `palabras` (`id`, `palabra`) VALUES
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `jugadores`
+--
+ALTER TABLE `jugadores`
+  ADD PRIMARY KEY (`usuario`);
 
 --
 -- Indices de la tabla `palabras`
