@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2022 a las 18:01:49
+-- Tiempo de generación: 20-11-2022 a las 18:03:41
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `jugadores` (
   `usuario` varchar(10) COLLATE ucs2_spanish_ci NOT NULL,
-  `contraseña` varchar(100) COLLATE ucs2_spanish_ci NOT NULL,
+  `pass_hashed` varchar(100) COLLATE ucs2_spanish_ci NOT NULL,
   `nombre` varchar(20) COLLATE ucs2_spanish_ci NOT NULL,
   `apellido` varchar(15) COLLATE ucs2_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ucs2 COLLATE=ucs2_spanish_ci;
@@ -38,8 +38,8 @@ CREATE TABLE `jugadores` (
 -- Volcado de datos para la tabla `jugadores`
 --
 
-INSERT INTO `jugadores` (`usuario`, `contraseña`, `nombre`, `apellido`) VALUES
-('Han', '1234', '', '');
+INSERT INTO `jugadores` (`usuario`, `pass_hashed`, `nombre`, `apellido`) VALUES
+('han', '$argon2id$v=19$m=65536,t=4,p=1$WlZ4UFhvQWlRTDFYS0JSaw$1M2ajGpbB1iioXa5syDQzeeFxYRS5vtvARBQhWVXV+c', 'Mengcheng', 'Han');
 
 -- --------------------------------------------------------
 
