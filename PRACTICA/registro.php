@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (in_array($_POST['usuario'], $usuarios)) {
                 echo "<font size=7><h1 align='center' font-size=60 >¡USUARIO EN USO!</h1></font>";
             } else {
-                $sentencia = $mydb->query("INSERT INTO jugadores VALUES ('$usuario', '$contraseña', '$nombre', '$apellido')");
+                $sentencia = $mysqli->query("INSERT INTO jugadores VALUES ('$usuario', '$contraseña', '$nombre', '$apellido')");
                 header('Location:login.php');
             }
         }
