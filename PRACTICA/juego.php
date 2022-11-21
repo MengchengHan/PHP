@@ -6,7 +6,7 @@ if (!$_SESSION['logged_in']) {
     if (!isset($_SESSION['letras'])) {
         $_SESSION['intento'] = 0;
         $_SESSION['puntos'] = 0;
-        if($_COOKIE['veces']==1){
+        if ($_COOKIE['veces'] == 1) {
             echo "Llevas " . $_COOKIE['veces'] . " vez iniciando sesión.";
         } else if ($_COOKIE['veces'] > 1) {
             echo "Llevas " . $_COOKIE['veces'] . " veces iniciando sesión.";
@@ -98,15 +98,15 @@ if (!$_SESSION['logged_in']) {
             ?>
         </div>
         <div id="play_again">
-            <form method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                 <?php
                 if (empty($_SESSION['palabras'])) {
                     echo "<input type='hidden' name='escondido'>";
                     echo "<input type='submit' name='play' value='Jugar de nuevo'>";
-                }
 
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    unset($_SESSION['letras']);
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        unset($_SESSION['letras']);
+                    }
                 }
                 ?>
             </form>
