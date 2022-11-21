@@ -1,0 +1,74 @@
+* {
+    font-size: 30px;
+}
+
+nav {
+    display: flex;
+    justify-content: right;
+}
+
+#cerrar_sesion {
+    width: fit-content;
+    font-size: 25px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: space-around;
+    padding-top: 100px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    align-items: center;
+}
+
+#letras{
+    width: fit-content;
+    margin: auto;
+    font: bold;
+}
+
+#datos {
+    width: fit-content;
+    margin: auto;
+}
+
+.texto {
+    width: 350px;
+    height: 55px;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 30px;
+}
+.enviar {
+    cursor: pointer;
+    width: 120px;
+    height: 45px;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(227, 227, 227);
+}
+
+#introducir {
+    width: fit-content;
+    margin: auto;
+}
+
+#respuestas {
+    width: fit-content;
+    margin: auto;
+    padding-top: 15px;
+}
+
+#play_again form {
+    width: fit-content;
+}
+
+#play_again {
+    width: fit-content;
+    
+}

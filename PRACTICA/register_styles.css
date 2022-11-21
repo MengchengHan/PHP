@@ -1,6 +1,6 @@
 :root {
-    --main_bg_color: rgba(150, 255, 255, 0.6);
-    --box_shadow : rgba(0,0,0,0.2);
+    --main_bg_color: white;
+    --box_shadow : rgba(0, 0, 0, 0.403);
     --button_gradient: linear-gradient(0deg, rgba(155, 155, 155, 0.55) 0%, rgb(230, 234, 234) 50%);
 }
 
@@ -10,7 +10,7 @@ body {
 
 #container {
     width: fit-content;
-    height: 1000px;
+    height: 800px;
     margin: 0px auto;  
     display: flex;
     justify-content: center;

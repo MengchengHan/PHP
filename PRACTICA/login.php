@@ -1,11 +1,15 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        session_start();
         try{
             $usuario = $_POST['user'];
             $contraseña = $_POST['pass'];
             $mysqli = new mysqli("localhost", "root", "", "juego");
             $hash = $mysqli->query("SELECT pass_hashed FROM jugadores WHERE usuario LIKE '$usuario'");
             if (password_verify($contraseña, $hash->fetch_column())) {
+                $_SESSION['logged_in'] = true;
+                !isset($_COOKIE['veces']) ? $num = 0 : $num = $_COOKIE['veces'];
+                setcookie('veces', $num + 1);
                 header('Location:juego.php');
             } else {
                 echo "<br>" . 'Has introducido mal tus credenciales, inténtalo de nuevo.';
