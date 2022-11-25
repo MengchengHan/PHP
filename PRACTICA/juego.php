@@ -12,7 +12,7 @@ if (!$_SESSION['logged_in']) {
             echo "Llevas " . $_COOKIE['veces'] . " veces iniciando sesión.";
         }
         $mysqli = new mysqli("localhost", "root", "", "juego");
-        $resultado = mysqli_query($mysqli, "SELECT palabra FROM palabras ORDER BY RAND() LIMIT 100");
+        $resultado = mysqli_query($mysqli, "SELECT palabra FROM palabras ORDER BY RAND() LIMIT 2");
         $palabras = array_map('current', mysqli_fetch_all($resultado));
         //echo "<pre>" . print_r($palabras, true) . "</pre>";
 
