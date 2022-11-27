@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header('Location:login.php');
             }
         }
-    } catch (PDOexception $e) {
+    } catch (mysqli_sql_exception $e) {
         echo $e->getMessage();
     }
 }
@@ -38,8 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div id="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<<<<<<< HEAD
             <input type="text" name="nombre" placeholder="Nombre" value=<?php if (isset($_POST['nombre'])) {echo $_POST['nombre'];}?>>
             <input type="text" name="apellido" placeholder="Apellido" value=<?php if (isset($_POST['apellido'])) {echo $_POST['apellido'];}?>>
+=======
+            <input type="text"  name="nombre" placeholder="Nombre" value=<?php if (isset($_POST['nombre'])) {echo $_POST['nombre'];}?>>
+            <input type="text"  name="apellido" placeholder="Apellido" value=<?php if (isset($_POST['apellido'])) {echo $_POST['apellido'];}?>>
+>>>>>>> ae7b6fdee5e3d10709a86724cdfb47184bef1d7a
             <input type="text" name="usuario" placeholder="Usuario" id="user" value=<?php if (isset($_POST['usuario'])) {echo $_POST['usuario'];} ?>>
             <input type="password" name="contraseña" placeholder="Contraseña" id="pass">
             <div id="caja_checkbox">
@@ -63,5 +68,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     }
 </script>
-
 </html>

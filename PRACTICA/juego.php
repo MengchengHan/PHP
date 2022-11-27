@@ -78,14 +78,14 @@ if (!$_SESSION['logged_in']) {
             <div id="datos">
                 <?php
                 // if (isset($_SESSION['puntos'])) {
-                echo "<br>" . "Aciertos: " . $_SESSION['puntos'] . "<br>";
+                    echo "<br>" . "Aciertos: " . $_SESSION['puntos'] . "<br>";
                 echo "Intentos: " . $_SESSION['intento'];
                 // }
                 ?>
             </div>
             <br>
             <div id="introducir">
-                <input type="text" name="introducido" placeholder="Introduce palabra" class="texto">
+                <input type="text" name="introducido" placeholder="Introduce palabra" class="texto" autofocus>
                 <input type="submit" class="enviar">
             </div>
         </form>
@@ -98,12 +98,12 @@ if (!$_SESSION['logged_in']) {
             ?>
         </div>
         <div id="play_again">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <?php
                 if (empty($_SESSION['palabras'])) {
                     echo "<input type='hidden' name='escondido'>";
                     echo "<input type='submit' name='play' value='Jugar de nuevo'>";
-
+                    
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         unset($_SESSION['letras']);
                     }
@@ -112,6 +112,7 @@ if (!$_SESSION['logged_in']) {
             </form>
         </div>
     </section>
+    
 </body>
 
 </html>

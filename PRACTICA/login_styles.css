@@ -10,8 +10,13 @@ body {
 }
 
 #container {
+    width: -moz-fit-content;
     width: fit-content;
+<<<<<<< HEAD
     height: 800px;
+=======
+    height: 700px;
+>>>>>>> ae7b6fdee5e3d10709a86724cdfb47184bef1d7a
     margin: 0px auto;  
     display: flex;
     justify-content: center;
@@ -24,6 +29,7 @@ body {
 }
 
 form {
+    width: -moz-fit-content;
     width: fit-content;
     display: flex;
     align-items: center;
