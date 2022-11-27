@@ -11,7 +11,7 @@ body {
 
 #container {
     width: fit-content;
-    height: 1000px;
+    height: 800px;
     margin: 0px auto;  
     display: flex;
     justify-content: center;
@@ -88,3 +88,8 @@ input[type=submit]{
     padding: 1%;
     line-height: 40px;
 }
+
+#errmsg{
+    width: fit-content;
+    margin: auto;
+}   
