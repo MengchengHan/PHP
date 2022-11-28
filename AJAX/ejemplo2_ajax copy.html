@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("load", inicio);
+        function inicio(){
+            document.getElementById("nombre").addEventListener("keyup", mostrarNombre);
+        }
+
+        function mostrarNombre(e){
+            let cadena = e.target.value;
+
+            if(cadena.length == 0){
+                document.getElementById("sugerencia").innerHTML = "";
+                return;
+            } else {
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if(this.readyState == 4 && this.status == 200) {
+                        document.getElementById("sugerencia").innerHTML = this.responseText;
+                    }
+                };
+                xhr.open("POST", "arrayNombres.php", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("nombre=" + cadena);
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre">
+    </form>
+    <p>Sugerencias: <span id="sugerencia"></span></p>
+</body>
+</html>

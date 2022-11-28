@@ -7,7 +7,7 @@
     
     echo $mysqli->host_info . "<br>";
 
-    $query = "SELECT * FROM usuarios";
+    $query = "SELECT nombre FROM usuarios";
     $resultado = $mysqli->query($query) or die($mysqli->error . " en la línea " . (__LINE__-1));    
 
     while($registro = $resultado->fetch_assoc()){
