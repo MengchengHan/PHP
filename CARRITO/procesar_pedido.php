@@ -20,11 +20,11 @@
 	}else{
 		$correo = $_SESSION['usuario']['correo'];
 		echo "Pedido realizado con éxito. Se enviará un correo de confirmación a: $correo ";							
-		$conf = enviar_correos($_SESSION['carrito'], $resul, $correo);							
-		if($conf!==TRUE){
-			echo "Error al enviar: $conf <br>";
-		};		
-		//vaciar carrito	
+		// $conf = enviar_correos($_SESSION['carrito'], $resul, $correo);							
+		// if($conf!==TRUE){
+		// 	// echo "Error al enviar: $conf <br>";
+		// };		
+		// //vaciar carrito	
 		$_SESSION['carrito'] = [];
 
 		}		

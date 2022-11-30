@@ -3,7 +3,7 @@
     <a href="categorias.php">Home</a>
     <a href="carrito.php">Ver carrito</a>
     <?php
-    if ($_SESSION['usuario']['rol'] == 1) {
+    if ($_SESSION['usuario'] == 1) {
         echo '<a href="administracion.php">Administacion</a>';
     }
     ?>
