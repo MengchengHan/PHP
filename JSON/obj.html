@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        window.addEventListener("load", init);
+        function init () {
+            document.getElementById("show").addEventListener("click", show);
+        }
+
+        function show () {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    let obj = JSON.parse(this.responseText);
+
+                    document.getElementById('parrafo').innerHTML = obj.nombre + " " + obj.apellido;
+                }
+            }
+
+            xhr.open("GET", "obj.php", true);
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <button id="show">Mostrar datos</button>
+    <p id="parrafo"></p>
+</body>
+</html>
